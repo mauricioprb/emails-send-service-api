@@ -3,11 +3,12 @@ services:
     image: postgres:latest
     container_name: postgres_email_service
     restart: always
-    env_file:
-      - .env
     environment:
       PGDATA: /var/lib/postgresql/data
       TZ: America/Sao_Paulo
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -21,11 +22,11 @@ services:
     restart: always
     depends_on:
       - postgres
-    env_file:
-      - .env
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER}@postgres:5432/${POSTGRES_DB}?schema=public
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "9000:9000"
-    command: ["sh", "-c", "npx prisma migrate deploy && npx prisma generate && npm start"] 
 
 volumes:
   postgres_data:
