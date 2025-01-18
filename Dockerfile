@@ -19,10 +19,12 @@ COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/dist /app/dist
 COPY --from=builder /app/prisma /app/prisma 
 
+RUN npm install -g wait-port
+
 EXPOSE 8000
 
 CMD sh -c "mkdir -p /run/secrets && echo \"$POSTGRES_PASSWORD\" > /run/secrets/db_password && \
-    until pg_isready -h postgres -p 5432 -U $POSTGRES_USER; do sleep 2; done && \
+    npx wait-port postgres:5432 && \
     npx prisma migrate deploy && \
     npx prisma generate && \
     npm start"
