@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install
+RUN npm install --only=production
 
 COPY . .
 
@@ -17,7 +17,8 @@ WORKDIR /app
 COPY --from=builder /app/package.json /app/package-lock.json /app/
 COPY --from=builder /app/node_modules /app/node_modules
 COPY --from=builder /app/dist /app/dist
+COPY --from=builder /app/prisma /app/prisma 
 
 EXPOSE 8000
 
-CMD ["npm", "start"]
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
