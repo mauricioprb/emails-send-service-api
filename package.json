@@ -1,0 +1,48 @@
+{
+  "name": "emails-send-service-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/server.js",
+    "build": "npx tsc",
+    "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --ignore-watch node_modules src/server.ts",
+    "dev:docker": "docker compose -f docker-compose.dev.yml up",
+    "dev:migrate": "npx prisma migrate dev --name init",
+    "criar:token": "node dist/scripts/createToken.js",
+    "listar:tokens": "node dist/scripts/listTokens.js",
+    "remover:token": "node dist/scripts/deleteToken.js",
+    "dev:criar:token": "ts-node-dev src/scripts/createToken.ts",
+    "dev:listar:tokens": "ts-node-dev src/scripts/listTokens.ts",
+    "dev:remover:token": "ts-node-dev src/scripts/deleteToken.ts"
+  },
+  "author": "mauricioprb",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "argon2": "^0.41.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemailer": "^6.9.16",
+    "prisma": "^6.2.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.7",
+    "@types/nodemailer": "^6.4.17",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "prettier": "^3.3.3",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.7.3"
+  }
+}
