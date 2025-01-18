@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres
-    container_name: postgres
+    container_name: postgres_email_service
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
