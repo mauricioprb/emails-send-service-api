@@ -5,8 +5,8 @@ async function createToken() {
   const args = process.argv.slice(2);
 
   if (args.length === 0) {
-    console.log("❌ Erro: Você deve informar o nome do desenvolvedor.");
-    console.log('📌 Uso: npm run criar:token "Nome do Desenvolvedor"');
+    console.log("[❌] Erro: Você deve informar o nome do desenvolvedor.");
+    console.log('[📌] Uso: npm run criar:token "Nome do Desenvolvedor"');
     process.exit(1);
   }
 
@@ -21,12 +21,12 @@ async function createToken() {
       },
     });
 
-    console.log("✅ Token gerado com sucesso!");
-    console.log(`👤 Desenvolvedor: ${developerName}`);
-    console.log(`🔑 Token para uso: Bearer ${rawToken}`);
-    console.log("⚠️ Guarde este token! Ele não poderá ser recuperado.");
+    console.log("[✅] Token gerado com sucesso!");
+    console.log(`[👤] Desenvolvedor: ${developerName}`);
+    console.log(`[🔑] Token para uso: Bearer ${rawToken}`);
+    console.log("[⚠️] Guarde este token! Ele não poderá ser recuperado.");
   } catch (error) {
-    console.error("❌ Erro ao criar token:", error);
+    console.error("[❌] Erro ao criar token:", error);
   } finally {
     await prisma.$disconnect();
   }

@@ -7,19 +7,19 @@ async function listTokens() {
     });
 
     if (tokens.length === 0) {
-      console.log("ℹ️ Nenhum token encontrado.");
+      console.log("[⚠️] Nenhum token encontrado.");
     } else {
-      console.log(`🔑 Lista de Tokens:\n`);
+      console.log(`[🔑] Lista de Tokens:\n`);
       tokens.forEach((token) => {
-        console.log(`🆔 ID: ${token.id}`);
-        console.log(`👤 Desenvolvedor: ${token.developer}`);
-        console.log(`🔑 Token Hash: ${token.token}`);
-        console.log(`📅 Criado em: ${token.createdAt}`);
+        console.log(`[🆔] ID: ${token.id}`);
+        console.log(`[👤] Desenvolvedor: ${token.developer}`);
+        console.log(`[🔑] Token Hash: ${token.token}`);
+        console.log(`[📅] Criado em: ${token.createdAt}`);
         console.log(`\n--------------------------------------\n`);
       });
     }
   } catch (error) {
-    console.error("❌ Erro ao listar tokens: ", error);
+    console.error("[❌] Erro ao listar tokens: ", error);
   } finally {
     await prisma.$disconnect();
   }
