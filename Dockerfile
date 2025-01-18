@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-RUN npm install --only=production
+RUN npm install
 
 COPY . .
 
@@ -15,9 +15,8 @@ FROM node:20
 WORKDIR /app
 
 COPY --from=builder /app/package.json /app/package-lock.json /app/
-COPY --from=builder /app/dist /app/dist
-COPY --from=builder /app/public /app/public
 COPY --from=builder /app/node_modules /app/node_modules
+COPY --from=builder /app/dist /app/dist
 
 EXPOSE 8000
 
