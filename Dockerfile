@@ -21,7 +21,7 @@ COPY --from=builder /app/prisma /app/prisma
 
 RUN echo "$POSTGRES_PASSWORD" > /run/secrets/db_password
 
-EXPOSE 8000
+EXPOSE 9000
 
 CMD sh -c "until pg_isready -h postgres -p 5432 -U $POSTGRES_USER; do sleep 2; done && \
     npx prisma migrate deploy && \
