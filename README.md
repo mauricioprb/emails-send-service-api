@@ -51,9 +51,9 @@ EMAIL_API_TOKEN="seu-token"
 ### 📥 Exemplo de Requisição
 
 ```bash
-curl -X POST http://localhost:3000/api/send-email \
--H "Content-Type: application/json" \
--H "Authorization: Bearer SEU_TOKEN_AQUI" \
+curl -X POST http://localhost:3000/api/send-email 
+-H "Content-Type: application/json" 
+-H "Authorization: Bearer SEU_TOKEN_AQUI" 
 -d '{
   "to": "destinatario@exemplo.com",
   "subject": "Teste de envio de email",
@@ -88,7 +88,7 @@ curl -X POST http://localhost:3000/api/send-email \
    npm install
    ```
 
-3. **Configure o arquivo `.env\`:**
+3. **Configure o arquivo `.env`:**
 
    Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
 
