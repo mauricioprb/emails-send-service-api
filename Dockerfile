@@ -10,7 +10,7 @@ RUN npm run build
 
 FROM node:20
 
-RUN apk add --no-cache netcat-openbsd
+RUN apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
