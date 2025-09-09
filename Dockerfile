@@ -7,16 +7,17 @@ RUN npm install
 COPY . .
 RUN npm run build
 
+
 FROM node:20
+
+RUN apk add --no-cache netcat-openbsd
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y netcat && rm -rf /var/lib/apt/lists/*
-
-COPY --from=builder /app/package.json /app/package-lock.json ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/prisma ./prisma
+COPY --from-builder /app/package.json /app/package-lock.json ./
+COPY --from-builder /app/node_modules ./node_modules
+COPY --from-builder /app/dist ./dist
+COPY --from-builder /app/prisma ./prisma
 
 COPY entrypoint.sh .
 RUN chmod +x ./entrypoint.sh
