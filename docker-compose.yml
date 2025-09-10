@@ -28,10 +28,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-    environment:
-      DATABASE_URL: ${DATABASE_URL}
+    env_file:
+      - .env
     ports:
-      - "9000:9000"
+      - 8001
 
 volumes:
   postgres_data:
